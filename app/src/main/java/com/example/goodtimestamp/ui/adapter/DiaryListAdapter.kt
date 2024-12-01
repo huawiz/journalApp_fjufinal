@@ -1,5 +1,6 @@
 package com.example.goodtimestamp.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -20,7 +21,8 @@ class DiaryListAdapter(
                 textTitle.text = entry.title
                 textPreview.text = entry.content
                 textDate.text = formatDate(entry.createDate)
-                root.setOnClickListener { onItemClick(entry) }
+                textIntensity.text = entry.intensity.toString()
+                textEnergy.text = entry.energy.toString()
             }
         }
 
@@ -40,7 +42,12 @@ class DiaryListAdapter(
     }
 
     override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val current = getItem(position)
+        holder.itemView.setOnClickListener {
+            Log.d("DiaryAdapter", "Clicked item with id: ${current.id}")  // 添加日誌
+            onItemClick(current)
+        }
+        holder.bind(current)
     }
 
     companion object {

@@ -2,10 +2,12 @@ package com.example.goodtimestamp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.goodtimestamp.GoodTimestampApplication
+import com.example.goodtimestamp.R
 import com.example.goodtimestamp.databinding.ActivityDiaryDetailBinding
 import com.example.goodtimestamp.viewmodel.DiaryViewModel
 import com.example.goodtimestamp.viewmodel.DiaryViewModelFactory
@@ -25,19 +27,22 @@ class DiaryDetailActivity : AppCompatActivity() {
         binding = ActivityDiaryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupToolbar()
+
         val diaryId = intent.getLongExtra("diary_id", -1)
         if (diaryId != -1L) {
             loadDiary(diaryId)
         }
 
-        setupActionBar()
         setupEditButton()
     }
 
-    private fun setupActionBar() {
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
-            title = "時間記錄"
+            setDisplayShowHomeEnabled(true)
+            title = getString(R.string.title_detail)
         }
     }
 
@@ -49,6 +54,8 @@ class DiaryDetailActivity : AppCompatActivity() {
                     binding.textTitle.text = it.title
                     binding.textContent.text = it.content
                     binding.textDate.text = formatDate(it.createDate)
+                    binding.textIntensity.text = it.intensity.toString()
+                    binding.textEnergy.text = it.energy.toString()
                 }
             }
         }
@@ -71,7 +78,7 @@ class DiaryDetailActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        finish()
         return true
     }
 }

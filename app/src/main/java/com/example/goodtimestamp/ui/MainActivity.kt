@@ -1,17 +1,18 @@
 package com.example.goodtimestamp.ui
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.activity.viewModels
 import android.content.Intent
+import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 import com.example.goodtimestamp.GoodTimestampApplication
+import com.example.goodtimestamp.R
 import com.example.goodtimestamp.databinding.ActivityMainBinding
+import com.example.goodtimestamp.ui.adapter.DiaryListAdapter
 import com.example.goodtimestamp.viewmodel.DiaryViewModel
 import com.example.goodtimestamp.viewmodel.DiaryViewModelFactory
-import com.example.goodtimestamp.ui.adapter.DiaryListAdapter
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,8 +25,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupToolbar()
         setupRecyclerView()
         setupFab()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = getString(R.string.title_main)
+        }
     }
 
     private fun setupRecyclerView() {

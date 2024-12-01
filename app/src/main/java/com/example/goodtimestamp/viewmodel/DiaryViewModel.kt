@@ -14,8 +14,13 @@ class DiaryViewModel(private val repository: DiaryRepository) : ViewModel() {
     private val _currentEntry = MutableStateFlow<DiaryEntry?>(null)
     val currentEntry: StateFlow<DiaryEntry?> = _currentEntry.asStateFlow()
 
-    fun insertEntry(title: String, content: String) = viewModelScope.launch {
-        val entry = DiaryEntry(title = title, content = content)
+    fun insertEntry(title: String, content: String, intensity: Int, energy: Int) = viewModelScope.launch {
+        val entry = DiaryEntry(
+            title = title,
+            content = content,
+            intensity = intensity,
+            energy = energy
+        )
         repository.insert(entry)
     }
 
@@ -30,5 +35,6 @@ class DiaryViewModel(private val repository: DiaryRepository) : ViewModel() {
     fun loadEntry(id: Long) = viewModelScope.launch {
         _currentEntry.value = repository.getEntry(id)
     }
+
 }
 
