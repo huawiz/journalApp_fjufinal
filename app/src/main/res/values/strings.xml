@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GoodTimestamp</string>
+
+    <!-- Activity 標題 -->
+    <string name="title_main">Journal</string>
+    <string name="title_detail">Journal</string>
+    <string name="title_new">Add Journal</string>
+    <string name="title_edit">Edit Journal</string>
+
+
+    <!-- List -->
+    <string name="label_intensity">投入程度 (1–10)</string>
+    <string name="label_energy">精力使用 (-5–5)</string>
+    <string name="hint_title">標題</string>
+    <string name="hint_content">內容</string>
+    <!-- 其他文字 -->
+    <string name="dialog_unsaved_title">未儲存的變更</string>
+    <string name="dialog_unsaved_message">你有未儲存的變更，確定要離開嗎？</string>
+    <string name="action_save">儲存</string>
+    <string name="action_discard">放棄</string>
+    <string name="action_cancel">取消</string>
+    <string name="error_empty_fields">標題和內容不能為空</string>
+</resources>
